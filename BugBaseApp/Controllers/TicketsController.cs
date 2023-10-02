@@ -40,19 +40,19 @@ namespace BugBaseApp.Controllers
         ///     {
         ///         "ticketId": 0,
         ///         "title": "Big Problem",
-        ///         "description" : "Doing this causes a big exception ... ",
+        ///         "description": "Doing this causes a big exception ... ",
         ///         "product": "Bug Base",
         ///         "feature": "Tickets",
         ///         "iteration": "Iteration 0",
-        ///         "stateId" : 1,
-        ///         "qaOwnerId" : 1,
+        ///         "stateId": 1,
+        ///         "qaOwnerId": 1,
         ///         "devOwnerId : 0,
         ///         "assignedToId : 0,
-        ///         "assignedTo" : {0,...},
-        ///         "devOwner" : {0,...},
-        ///         "qaOwner" : {1,...},
-        ///         "state" : {1,...},
-        ///         "ticketChangeHistories" : [{0,...},...] 
+        ///         "assignedTo": {0,...},
+        ///         "devOwner": {0,...},
+        ///         "qaOwner": {1,...},
+        ///         "state": {1,...},
+        ///         "ticketChangeHistories": [{0,...},...] 
         ///     },
         ///     ...
         /// ]
@@ -83,19 +83,19 @@ namespace BugBaseApp.Controllers
         /// {
         ///     "ticketId": 0,
         ///     "title": "Big Problem",
-        ///     "description" : "Doing this causes a big exception ... ",
+        ///     "description": "Doing this causes a big exception ... ",
         ///     "product": "Bug Base",
         ///     "feature": "Tickets",
         ///     "iteration": "Iteration 0",
-        ///     "stateId" : 1,
-        ///     "qaOwnerId" : 1,
-        ///     "devOwnerId" : 0,
-        ///     "assignedToId" : 0,
-        ///     "assignedTo" : {0,...},
-        ///     "devOwner" : {0,...},
-        ///     "qaOwner" : {1,...},
-        ///     "state" : {1,...},
-        ///     "ticketChangeHistories" : [{0,...},...] 
+        ///     "stateId": 1,
+        ///     "qaOwnerId": 1,
+        ///     "devOwnerId": 0,
+        ///     "assignedToId": 0,
+        ///     "assignedTo": {0,...},
+        ///     "devOwner": {0,...},
+        ///     "qaOwner": {1,...},
+        ///     "state": {1,...},
+        ///     "ticketChangeHistories": [{0,...},...] 
         /// }
         /// </code>
         /// </pre>
@@ -128,9 +128,9 @@ namespace BugBaseApp.Controllers
         /// <code>
         /// {
         ///     "title": "Big Problem",
-        ///     "description" : "Doing this causes a big exception ... ",
-        ///     "qaOwnerId" : 1,
-        ///     "devOwnerId" : 0
+        ///     "description": "Doing this causes a big exception ... ",
+        ///     "qaOwnerId": 1,
+        ///     "devOwnerId": 0
         /// }
         /// </code>
         /// </pre>
@@ -142,25 +142,25 @@ namespace BugBaseApp.Controllers
         /// {
         ///     "ticketId": 0,
         ///     "title": "Big Problem",
-        ///     "description" : "Doing this causes a big exception ... ",
+        ///     "description": "Doing this causes a big exception ... ",
         ///     "product": "Bug Base",
         ///     "feature": "Tickets",
         ///     "iteration": "Iteration 0",
-        ///     "stateId" : 1,
-        ///     "qaOwnerId" : 1,
-        ///     "devOwnerId" : 0,
-        ///     "assignedToId" : 0,
-        ///     "assignedTo" : null,
-        ///     "devOwner" : {0,...},
-        ///     "qaOwner" : {1,...},
-        ///     "state" : {1,...},
-        ///     "ticketChangeHistories" : [{0,...}] 
+        ///     "stateId": 1,
+        ///     "qaOwnerId": 1,
+        ///     "devOwnerId": 0,
+        ///     "assignedToId": 0,
+        ///     "assignedTo": null,
+        ///     "devOwner": {0,...},
+        ///     "qaOwner": {1,...},
+        ///     "state": {1,...},
+        ///     "ticketChangeHistories": [{0,...}] 
         /// }
         /// </code>
         /// </pre>
         /// </remarks>
         [HttpPost]
-        public async Task<IActionResult> Post([Bind("TicketId,Title,Description,State,Qaowner,DevOwner,AssignedTo")][FromBody] Ticket ticket)
+        public async Task<IActionResult> Post([Bind("TicketId,Title,Description,Feature,Product,Iteration,StateId,QaownerId,DevOwnerId,AssignedToId")][FromBody] Ticket ticket)
         {
             if (ModelState.IsValid)
             {
@@ -189,7 +189,7 @@ namespace BugBaseApp.Controllers
         /// <code>
         /// {
         ///     "ticketId": 0,
-        ///     "stateId" 5
+        ///     "stateId": 5
         /// }
         /// </code>
         /// </pre>
@@ -201,34 +201,51 @@ namespace BugBaseApp.Controllers
         /// {
         ///     "ticketId": 0,
         ///     "title": "Big Problem",
-        ///     "description" : "Doing this causes a big exception ... ",
+        ///     "description": "Doing this causes a big exception ... ",
         ///     "product": "Bug Base",
         ///     "feature": "Tickets",
         ///     "iteration": "Iteration 0",
-        ///     "stateId" : 5,
-        ///     "qaOwnerId" : 1,
-        ///     "devOwnerId" : 0,
-        ///     "assignedToId" : 1,
-        ///     "assignedTo" : {1,...},
-        ///     "devOwner" : {0,...},
-        ///     "qaOwner" : {1,...},
-        ///     "state" : {5,...},
-        ///     "ticketChangeHistories" : [{0,...}] 
+        ///     "stateId": 5,
+        ///     "qaOwnerId": 1,
+        ///     "devOwnerId": 0,
+        ///     "assignedToId": 1,
+        ///     "assignedTo": {1,...},
+        ///     "devOwner": {0,...},
+        ///     "qaOwner": {1,...},
+        ///     "state": {5,...},
+        ///     "ticketChangeHistories": [{0,...}] 
         /// }
         /// </code>
         /// </pre>
         /// </remarks>
         [HttpPatch("{id}")]
-        public async Task<IActionResult> Patch(long id, [Bind("TicketId,Title,Description,State,Qaowner,DevOwner,AssignedTo")][FromBody] Ticket ticket)
+        public async Task<IActionResult> Patch(long id, [Bind("TicketId,Title,Description,Feature,Product,Iteration,StateId,QaownerId,DevOwnerId,AssignedToId")][FromBody] Ticket ticket)
         {
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var entity = _context.Update(ticket);
+                    var existing = _context.Tickets.Find(id);
+
+                    existing.Feature = ticket.Feature ?? existing.Feature;
+                    existing.Product = ticket.Product ?? existing.Product;
+                    existing.Iteration = ticket.Iteration ?? existing.Iteration;
+                    existing.StateId = ticket.StateId ?? existing.StateId;
+                    existing.QaownerId = ticket.QaownerId ?? existing.QaownerId;
+                    existing.DevOwnerId = ticket.DevOwnerId ?? existing.DevOwnerId;
+                    existing.AssignedToId = ticket.AssignedToId ?? existing.AssignedToId;
+                    existing.Title = ticket.Title ?? existing.Title;
+                    existing.Description = ticket.Description ?? existing.Description;
+
                     await _context.SaveChangesAsync();
-                    return await Get(entity.Entity.TicketId);
+
+                    _context.Entry(existing).Reload();
+
+                    existing = _context.Tickets.Find(id);
+
+                    return await Get(existing.TicketId);
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -261,6 +278,7 @@ namespace BugBaseApp.Controllers
             if (ticket != null)
             {
                 _context.Tickets.Remove(ticket);
+                await _context.SaveChangesAsync();
                 return Ok();
             }
 

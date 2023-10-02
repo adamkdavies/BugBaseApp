@@ -108,7 +108,7 @@ namespace BugBaseApp.Controllers
         /// {
         ///     "noteText": "I found some alternate behavior by doing...",
         ///     "ticketId": 0,
-        ///     "noteOwnerId" : 0
+        ///     "noteOwnerId": 0
         /// }
         /// </code>
         /// </pre>
@@ -120,7 +120,7 @@ namespace BugBaseApp.Controllers
         /// {
         ///     "noteText": "I found some alternate behavior by doing...",
         ///     "ticketId": 0,
-        ///     "noteOwnerId" : 0,
+        ///     "noteOwnerId": 0,
         ///     "ticket": {0,...},
         ///     "noteOwner": {0,...}
         /// }

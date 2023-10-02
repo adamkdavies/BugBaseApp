@@ -22,6 +22,7 @@ builder.Services.AddControllersWithViews()
         options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
     });
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

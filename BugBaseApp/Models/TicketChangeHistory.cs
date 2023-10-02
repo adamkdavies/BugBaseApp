@@ -13,9 +13,15 @@ public partial class TicketChangeHistory
 
     public string? TicketChangeDateTime { get; set; }
 
-    public string? Title { get; set; }
+    public string Title { get; set; } = null!;
 
-    public string? Description { get; set; }
+    public string Description { get; set; } = null!;
+
+    public string? Product { get; set; }
+
+    public string? Feature { get; set; }
+
+    public string? Iteration { get; set; }
 
     public long? StateId { get; set; }
 

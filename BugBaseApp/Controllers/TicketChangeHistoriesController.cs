@@ -102,10 +102,8 @@ namespace BugBaseApp.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(long id)
         {
-            var ticket = _context.TicketChangeHistories
-                .Include(ticketChange => ticketChange.Ticket)
-                .Include(ticketChange => ticketChange.TicketChangeType)
-                .FirstOrDefault(ticket => ticket.TicketChangeHistoryId == id);
+            var ticket = _context.TicketChangeHistories.Where(t => t.TicketChangeHistoryId == id).FirstOrDefault();
+            
             if (ticket == null)
             {
                 return await Task.FromResult(NotFound(id));

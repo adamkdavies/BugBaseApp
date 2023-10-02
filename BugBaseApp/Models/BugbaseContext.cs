@@ -41,7 +41,7 @@ public partial class BugbaseContext : DbContext
 
             entity.HasIndex(e => e.NoteId, "IX_Note_NoteId").IsUnique();
 
-            entity.Property(e => e.NoteId).ValueGeneratedNever();
+            entity.Property(e => e.NoteId).ValueGeneratedOnAdd();
             entity.Property(e => e.TicketId).HasColumnName("TicketID");
 
             entity.HasOne(d => d.NoteOwner).WithMany(p => p.Notes).HasForeignKey(d => d.NoteOwnerId);
@@ -61,7 +61,7 @@ public partial class BugbaseContext : DbContext
             entity.ToTable("State");
 
             entity.Property(e => e.StateId)
-                .ValueGeneratedNever()
+                .ValueGeneratedOnAdd()
                 .HasColumnName("StateID");
         });
 
@@ -69,7 +69,7 @@ public partial class BugbaseContext : DbContext
         {
             entity.ToTable("Ticket");
 
-            entity.Property(e => e.TicketId).ValueGeneratedNever();
+            entity.Property(e => e.TicketId).ValueGeneratedOnAdd();
             entity.Property(e => e.QaownerId).HasColumnName("QAOwnerId");
 
             entity.HasOne(d => d.AssignedTo).WithMany(p => p.TicketAssignedTos).HasForeignKey(d => d.AssignedToId);
@@ -117,7 +117,7 @@ public partial class BugbaseContext : DbContext
 
             entity.HasIndex(e => e.UserName, "IX_User_UserName").IsUnique();
 
-            entity.Property(e => e.UserId).ValueGeneratedNever();
+            entity.Property(e => e.UserId).ValueGeneratedOnAdd();
 
             entity.HasOne(d => d.Role).WithMany(p => p.Users).HasForeignKey(d => d.RoleId);
         });

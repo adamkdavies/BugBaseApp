@@ -1,5 +1,5 @@
 --
--- File generated with SQLiteStudio v3.4.4 on Mon Oct 2 01:45:02 2023
+-- File generated with SQLiteStudio v3.4.4 on Mon Oct 2 16:06:12 2023
 --
 -- Text encoding used: System
 --
@@ -10,12 +10,24 @@ BEGIN TRANSACTION;
 DROP TABLE IF EXISTS Note;
 
 CREATE TABLE IF NOT EXISTS Note (
-    NoteId      INTEGER PRIMARY KEY
-                        UNIQUE,
+    NoteId      INTEGER PRIMARY KEY,
     NoteText    TEXT,
     TicketID    INTEGER REFERENCES Ticket (TicketID),
     NoteOwnerId INTEGER REFERENCES User (UserId) 
 );
+
+INSERT INTO Note (
+                     NoteId,
+                     NoteText,
+                     TicketID,
+                     NoteOwnerId
+                 )
+                 VALUES (
+                     1,
+                     'I found some alternate behavior by doing...',
+                     0,
+                     0
+                 );
 
 
 -- Table: Role
@@ -178,18 +190,42 @@ CREATE TABLE IF NOT EXISTS Ticket (
     AssignedToId INTEGER REFERENCES User (UserID) 
 );
 
+INSERT INTO Ticket (
+                       TicketId,
+                       Title,
+                       Description,
+                       Product,
+                       Feature,
+                       Iteration,
+                       StateId,
+                       QAOwnerId,
+                       DevOwnerId,
+                       AssignedToId
+                   )
+                   VALUES (
+                       0,
+                       'Big Problem',
+                       'Doing this causes a big exception ... ',
+                       'Money Maker',
+                       'analytics',
+                       'phase 2',
+                       3,
+                       0,
+                       1,
+                       0
+                   );
+
 
 -- Table: TicketChangeHistory
 DROP TABLE IF EXISTS TicketChangeHistory;
 
 CREATE TABLE IF NOT EXISTS TicketChangeHistory (
-    TicketChangeHistoryId INTEGER PRIMARY KEY AUTOINCREMENT
-                                  UNIQUE,
+    TicketChangeHistoryId INTEGER PRIMARY KEY,
     TicketChangeTypeId    INTEGER REFERENCES TicketChangeType (TicketChangeTypeId),
     TicketId              INTEGER REFERENCES Ticket (TicketID),
     TicketChangeDateTime  TEXT,
-    Title                 TEXT    NOT NULL,
-    Description           TEXT    NOT NULL,
+    Title                 TEXT    DEFAULT (''),
+    Description           TEXT    DEFAULT (''),
     Product               TEXT,
     Feature               TEXT,
     Iteration             TEXT,
@@ -199,6 +235,72 @@ CREATE TABLE IF NOT EXISTS TicketChangeHistory (
     AssignedToId          INTEGER REFERENCES User (UserId),
     NoteText              TEXT
 );
+
+INSERT INTO TicketChangeHistory (
+                                    TicketChangeHistoryId,
+                                    TicketChangeTypeId,
+                                    TicketId,
+                                    TicketChangeDateTime,
+                                    Title,
+                                    Description,
+                                    Product,
+                                    Feature,
+                                    Iteration,
+                                    StateId,
+                                    QAOwnerId,
+                                    DevOwnerId,
+                                    AssignedToId,
+                                    NoteText
+                                )
+                                VALUES (
+                                    1,
+                                    0,
+                                    0,
+                                    '2023-10-02 19-49-45.172',
+                                    'Big Problem',
+                                    'Doing this causes a big exception ... ',
+                                    NULL,
+                                    NULL,
+                                    NULL,
+                                    0,
+                                    0,
+                                    1,
+                                    NULL,
+                                    NULL
+                                );
+
+INSERT INTO TicketChangeHistory (
+                                    TicketChangeHistoryId,
+                                    TicketChangeTypeId,
+                                    TicketId,
+                                    TicketChangeDateTime,
+                                    Title,
+                                    Description,
+                                    Product,
+                                    Feature,
+                                    Iteration,
+                                    StateId,
+                                    QAOwnerId,
+                                    DevOwnerId,
+                                    AssignedToId,
+                                    NoteText
+                                )
+                                VALUES (
+                                    2,
+                                    2,
+                                    0,
+                                    '2023-10-02 22-56-17.828',
+                                    NULL,
+                                    NULL,
+                                    NULL,
+                                    NULL,
+                                    NULL,
+                                    NULL,
+                                    NULL,
+                                    NULL,
+                                    NULL,
+                                    'I found some alternate behavior by doing...'
+                                );
 
 
 -- Table: TicketChangeType
@@ -242,14 +344,47 @@ INSERT INTO TicketChangeType (
 DROP TABLE IF EXISTS User;
 
 CREATE TABLE IF NOT EXISTS User (
-    UserId      INTEGER PRIMARY KEY
-                        UNIQUE,
+    UserId      INTEGER PRIMARY KEY,
     UserName    TEXT    UNIQUE,
     DisplayName TEXT,
     Email       TEXT,
     Phone       TEXT,
     RoleId      INTEGER REFERENCES Role (RoleID) 
 );
+
+INSERT INTO User (
+                     UserId,
+                     UserName,
+                     DisplayName,
+                     Email,
+                     Phone,
+                     RoleId
+                 )
+                 VALUES (
+                     0,
+                     'qa',
+                     'qa person',
+                     'qa@corp.com',
+                     '555-555-5555',
+                     0
+                 );
+
+INSERT INTO User (
+                     UserId,
+                     UserName,
+                     DisplayName,
+                     Email,
+                     Phone,
+                     RoleId
+                 )
+                 VALUES (
+                     1,
+                     'dev',
+                     'dev person',
+                     'dev@corp.com',
+                     '555-555-5556',
+                     1
+                 );
 
 
 -- Trigger: AnnotationTrigger
@@ -320,7 +455,7 @@ END;
 -- Trigger: TicketModify
 DROP TRIGGER IF EXISTS TicketModify;
 CREATE TRIGGER IF NOT EXISTS TicketModify
-                       AFTER UPDATE
+                      BEFORE UPDATE
                           ON Ticket
 BEGIN
     INSERT INTO TicketChangeHistory (
@@ -342,8 +477,8 @@ BEGIN
                                         new.TicketID,
                                         strftime('%Y-%m-%d %H-%M-%f', 'now'),
                                         CASE WHEN new.Title != old.Title THEN new.Title ELSE NULL END,
-                                        CASE WHEN new.Description != old.Description THEN new.Description ELSE NULL END,
-                                        CASE WHEN new.Product != old.Product THEN new.Product ELSE NULL END,
+                                        CASE WHEN new.Description != old.Description THEN new.Description ELSE ' ' END,
+                                        CASE WHEN new.Product != old.Product THEN new.Product ELSE ' ' END,
                                         CASE WHEN new.Feature != old.Feature THEN new.Feature ELSE NULL END,
                                         CASE WHEN new.Iteration != old.Iteration THEN new.Iteration ELSE NULL END,
                                         CASE WHEN new.StateId != old.StateId THEN new.StateId ELSE NULL END,

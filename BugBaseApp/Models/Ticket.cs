@@ -11,6 +11,12 @@ public partial class Ticket
 
     public string? Description { get; set; }
 
+    public string? Product { get; set; }
+
+    public string? Feature { get; set; }
+
+    public string? Iteration { get; set; }
+
     public long? StateId { get; set; }
 
     public long? QaownerId { get; set; }

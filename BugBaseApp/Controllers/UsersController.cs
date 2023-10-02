@@ -36,12 +36,12 @@ namespace BugBaseApp.Controllers
         /// [
         ///     {
         ///         "userId : 0,
-        ///         "userName" : "johndoe",
-        ///         "displayName" : "John Doe",
-        ///         "email" : "john.doe@corp.com",
-        ///         "phone" : "555-555-5555",
-        ///         "roleId" : 0,
-        ///         "role" : {...}
+        ///         "userName": "johndoe",
+        ///         "displayName": "John Doe",
+        ///         "email": "john.doe@corp.com",
+        ///         "phone": "555-555-5555",
+        ///         "roleId": 0,
+        ///         "role": {...}
         ///     }, ...
         /// ]
         /// </code>
@@ -70,12 +70,12 @@ namespace BugBaseApp.Controllers
         /// <code>
         /// {
         ///     "userId : 0,
-        ///     "userName" : "johndoe",
-        ///     "displayName" : "John Doe",
-        ///     "email" : "john.doe@corp.com",
-        ///     "phone" : "555-555-5555",
-        ///     "role" : 0
-        ///     "role" : {...}
+        ///     "userName": "johndoe",
+        ///     "displayName": "John Doe",
+        ///     "email": "john.doe@corp.com",
+        ///     "phone": "555-555-5555",
+        ///     "role": 0
+        ///     "role": {...}
         /// }
         /// </code>
         /// </pre>
@@ -106,11 +106,11 @@ namespace BugBaseApp.Controllers
         /// <pre>
         /// <code>
         /// {
-        ///     "userName" : "johndoe",
-        ///     "displayName" : "John Doe",
-        ///     "email" : "john.doe@corp.com",
-        ///     "phone" : "555-555-5555",
-        ///     "role" : 0
+        ///     "userName": "johndoe",
+        ///     "displayName": "John Doe",
+        ///     "email": "john.doe@corp.com",
+        ///     "phone": "555-555-5555",
+        ///     "role": 0
         /// }
         /// </code>
         /// </pre>
@@ -120,17 +120,18 @@ namespace BugBaseApp.Controllers
         /// <pre>
         /// <code>
         /// {
-        ///     "userName" : "johndoe",
-        ///     "displayName" : "John Doe",
-        ///     "email" : "john.doe@corp.com",
-        ///     "phone" : "555-555-5555",
-        ///     "role" : 0
+        ///     "userId": 0,
+        ///     "userName": "johndoe",
+        ///     "displayName": "John Doe",
+        ///     "email": "john.doe@corp.com",
+        ///     "phone": "555-555-5555",
+        ///     "role": 0
         /// }
         /// </code>
         /// </pre>
         /// </remarks>
         [HttpPost]
-        public async Task<IActionResult> Post([Bind("UserId,UserName,DisplayName,Email,Phone,Role")][FromBody] User user)
+        public async Task<IActionResult> Post([Bind("UserId,UserName,DisplayName,Email,Phone,RoleId")][FromBody] User user)
         {
             if (ModelState.IsValid)
             {
@@ -158,11 +159,11 @@ namespace BugBaseApp.Controllers
         /// <pre>
         /// <code>
         /// {
-        ///     "userName" : "janedoe",
-        ///     "displayName" : "Jane Doe",
-        ///     "email" : "jane.doe@corp.com",
-        ///     "phone" : "444-444-4444",
-        ///     "role" : 3
+        ///     "userName": "janedoe",
+        ///     "displayName": "Jane Doe",
+        ///     "email": "jane.doe@corp.com",
+        ///     "phone": "444-444-4444",
+        ///     "role": 3
         /// }
         /// </code>
         /// </pre>
@@ -173,25 +174,30 @@ namespace BugBaseApp.Controllers
         /// <code>
         /// {
         ///     "userId: 0,
-        ///     "userName" : "janedoe",
-        ///     "displayName" : "Jane Doe",
-        ///     "email" : "jane.doe@corp.com",
-        ///     "phone" : "444-444-4444",
-        ///     "role" : 3
+        ///     "userName": "janedoe",
+        ///     "displayName": "Jane Doe",
+        ///     "email": "jane.doe@corp.com",
+        ///     "phone": "444-444-4444",
+        ///     "role": 3
         /// }
         /// </code>
         /// </pre>
         /// </remarks>
         [HttpPatch("{id}")]
-        public async Task<IActionResult> Patch(int id, [Bind("UserId,UserName,DisplayName,Email,Phone,Role")][FromBody] User user)
+        public async Task<IActionResult> Patch(long id, [Bind("UserId,UserName,DisplayName,Email,Phone,RoleId")][FromBody] User user)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var entity = _context.Update(user);
+                    var existing = _context.Users.Find(id);
+                    existing.UserName = user.UserName ?? existing.UserName;
+                    existing.DisplayName = user.DisplayName ?? existing.DisplayName;
+                    existing.Email = user.Email ?? existing.Email;
+                    existing.Phone = user.Phone ?? existing.Phone;
+                    existing.RoleId = user.RoleId ?? existing.RoleId;
                     await _context.SaveChangesAsync();
-                    return await Get(entity.Entity.UserId);
+                    return await Get(id);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
