@@ -136,6 +136,12 @@ To run this application, you need sqlite3 to generate the database.
 
 If you don't have Chocolatey, download instructions are [here](https://chocolatey.org/install#individual).
 
+Lastly, assignment should be handled via state transitions, by setting stateId in the [Ticket](#ticket).
+
+State transitions are as follows:
+
+[Ticket](#ticket).assignedToId = state in {New, Fixed, Resolved, Can't Reproduce, Invalid, Duplicate} then [Ticket](#ticket).qaOwnerId else [Ticket](#ticket).devOwnerId
+
 
 ## Notes
 
@@ -146,3 +152,9 @@ Some things considered but intentionally consided out of scope:
 * The handling of a *Removed* state that is typical in a tracking system.
 * Securing of the endpoints.
 * Support for likely third-party user environment (e.g. - AD/LDAP).
+* Unit testing.
+
+Some things stubled upon, and to revisit:
+
+* Pure automatic generation of models/context - don't know if this exists for core for Entity Framework, most answers involved scaffolding tools.  If they do, they would need some configurations for typical sqlite id's, or I'd have to transition to text and guid generators for id's.
+* Proper handling of unique items, not null items, etc.
