@@ -43,7 +43,8 @@ A simple application to track bugs.
 
 ### Note
 
->{
+```
+{
     "noteId": long,
     "noteText": string,
     "ticketId": long,
@@ -51,24 +52,31 @@ A simple application to track bugs.
     *"ticket": [Ticket](#ticket)*,
     *"noteOwner": [User](#user)*
 }
+```
 
 ### Role
 
->{
+
+```
+{
     "roleId": long,
     "roleName": string
 }
+```
 
 ### State
 
->{
+```
+{
     "stateId": long,
     "stateName": string
 }
+```
 
 ### TicketChangeHistory
 
->{
+```
+{
     "ticketChangeHistoryId": long,
     "ticketChangeTypeId": long,
     "ticketId": long,
@@ -83,17 +91,21 @@ A simple application to track bugs.
     *"ticket" : [Ticket](#ticket)*,
     *"ticketChangeType" : [TicketChangeType](#ticketchangetype)*
 }
+```
 
 ### TicketChangeType
 
->{
+```
+{
     "ticketChangeTypeId": long,
     "ticketChangeTypeName": string
 }
+```
 
 ### Ticket
 
->{
+```
+{
     "ticketId": long,
     "title": string,
     "description" : string,
@@ -110,10 +122,12 @@ A simple application to track bugs.
     *"state" : [State](#state),*
     *"ticketChangeHistories" : [ [TicketChangeHistory](#ticketchangehistory) ]*
 }
+```
 
 ### User
 
->{
+```
+{
     "userId : long,
     "userName" : string,
     "displayName" : string,
@@ -122,6 +136,7 @@ A simple application to track bugs.
     "roleId" : long,
     *"role" : [Role](#role)*
 }
+```
 
 **Italicized items are output only.*
 
