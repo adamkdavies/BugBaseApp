@@ -43,100 +43,88 @@ A simple application to track bugs.
 
 ### Note
 
-```
-{
-    "noteId": long,
-    "noteText": string,
-    "ticketId": long,
-    "noteOwnerId": long,
-    *"ticket": [Ticket](#ticket)*,
-    *"noteOwner": [User](#user)*
-}
-```
+>{
+>    "noteId": long,
+>   "noteText": string,
+>   "ticketId": long,
+>   "noteOwnerId": long,
+>   *"ticket": [Ticket](#ticket)*,
+>    *"noteOwner": [User](#user)*
+>}
 
 ### Role
 
 
-```
-{
-    "roleId": long,
-    "roleName": string
-}
-```
+
+>{
+>    "roleId": long,
+>    "roleName": string
+>}
 
 ### State
 
-```
-{
-    "stateId": long,
-    "stateName": string
-}
-```
+>{
+>    "stateId": long,
+>    "stateName": string
+>}
 
 ### TicketChangeHistory
 
-```
-{
-    "ticketChangeHistoryId": long,
-    "ticketChangeTypeId": long,
-    "ticketId": long,
-    "ticketChangeDateTime": string,
-    "title": string,
-    "description": string
-    "stateId": long,
-    "qaOwnerId" : long,
-    "devOwnerId" : long,
-    "asssignedToId" : long,
-    *"noteText" : [Note](#note)*,
-    *"ticket" : [Ticket](#ticket)*,
-    *"ticketChangeType" : [TicketChangeType](#ticketchangetype)*
-}
-```
+>{
+>    "ticketChangeHistoryId": long,
+>    "ticketChangeTypeId": long,
+>    "ticketId": long,
+>    "ticketChangeDateTime": string,
+>    "title": string,
+>    "description": string
+>    "stateId": long,
+>    "qaOwnerId" : long,
+>    "devOwnerId" : long,
+>    "asssignedToId" : long,
+>    *"noteText" : [Note](#note)*,
+>    *"ticket" : [Ticket](#ticket)*,
+>    *"ticketChangeType" : [TicketChangeType](#ticketchangetype)*
+>}
 
 ### TicketChangeType
 
-```
-{
-    "ticketChangeTypeId": long,
-    "ticketChangeTypeName": string
-}
-```
+>{
+>    "ticketChangeTypeId": long,
+>    "ticketChangeTypeName": string
+>}
 
 ### Ticket
 
-```
-{
-    "ticketId": long,
-    "title": string,
-    "description" : string,
-    "product" : string,
-    "feature" : string,
-    "iteration" : string,
-    "stateId" : long,
-    "qaOwnerId" : long,
-    "devOwnerId" : long,
-    "assignedToId" : long,
-    *"assignedTo" : [User](#user),*
-    *"devOwner" : [User](#user),*
-    *"qaOwner" : [User](#user),*
-    *"state" : [State](#state),*
-    *"ticketChangeHistories" : [ [TicketChangeHistory](#ticketchangehistory) ]*
-}
-```
+
+>{
+>    "ticketId": long,
+>    "title": string,
+>    "description" : string,
+>    "product" : string,
+>    "feature" : string,
+>    "iteration" : string,
+>    "stateId" : long,
+>    "qaOwnerId" : long,
+>    "devOwnerId" : long,
+>    "assignedToId" : long,
+>    *"assignedTo" : [User](#user),*
+>    *"devOwner" : [User](#user),*
+>    *"qaOwner" : [User](#user),*
+>    *"state" : [State](#state),*
+>    *"ticketChangeHistories" : [ [TicketChangeHistory](#ticketchangehistory) ]*
+>}
 
 ### User
 
-```
-{
-    "userId : long,
-    "userName" : string,
-    "displayName" : string,
-    "email" : string,
-    "phone" : string,
-    "roleId" : long,
-    *"role" : [Role](#role)*
-}
-```
+>{
+>    "userId : long,
+>    "userName" : string,
+>    "displayName" : string,
+>    "email" : string,
+>    "phone" : string,
+>    "roleId" : long,
+>    *"role" : [Role](#role)*
+>}
 
 **Italicized items are output only.*
 
