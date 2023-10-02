@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/BugBaseApp/Data/bugbase.db.away
+/BugBaseApp/Data/bugbase.db
