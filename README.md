@@ -43,7 +43,7 @@ A simple application to track bugs.
 
 ### Note
 
-{
+>{
     "noteId": long,
     "noteText": string,
     "ticketId": long,
@@ -54,21 +54,21 @@ A simple application to track bugs.
 
 ### Role
 
-{
+>{
     "roleId": long,
     "roleName": string
 }
 
 ### State
 
-{
+>{
     "stateId": long,
     "stateName": string
 }
 
 ### TicketChangeHistory
 
-{
+>{
     "ticketChangeHistoryId": long,
     "ticketChangeTypeId": long,
     "ticketId": long,
@@ -86,14 +86,14 @@ A simple application to track bugs.
 
 ### TicketChangeType
 
-{
+>{
     "ticketChangeTypeId": long,
     "ticketChangeTypeName": string
 }
 
 ### Ticket
 
-{
+>{
     "ticketId": long,
     "title": string,
     "description" : string,
@@ -113,7 +113,7 @@ A simple application to track bugs.
 
 ### User
 
-{
+>{
     "userId : long,
     "userName" : string,
     "displayName" : string,
