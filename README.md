@@ -1,4 +1,4 @@
-#BugBaseApp
+# BugBaseApp
 
 A simple application to track bugs.
 
