@@ -158,3 +158,4 @@ Some things stubled upon, and to revisit:
 
 * Pure automatic generation of models/context - don't know if this exists for core for Entity Framework, most answers involved scaffolding tools.  If they do, they would need some configurations for typical sqlite id's, or I'd have to transition to text and guid generators for id's.
 * Proper handling of unique items, not null items, etc.
+* Getting swashbuckle to replace the example value properly.
