@@ -1,5 +1,5 @@
 --
--- File generated with SQLiteStudio v3.4.4 on Mon Oct 2 16:06:12 2023
+-- File generated with SQLiteStudio v3.4.4 on Mon Oct 2 17:05:09 2023
 --
 -- Text encoding used: System
 --
@@ -267,39 +267,6 @@ INSERT INTO TicketChangeHistory (
                                     1,
                                     NULL,
                                     NULL
-                                );
-
-INSERT INTO TicketChangeHistory (
-                                    TicketChangeHistoryId,
-                                    TicketChangeTypeId,
-                                    TicketId,
-                                    TicketChangeDateTime,
-                                    Title,
-                                    Description,
-                                    Product,
-                                    Feature,
-                                    Iteration,
-                                    StateId,
-                                    QAOwnerId,
-                                    DevOwnerId,
-                                    AssignedToId,
-                                    NoteText
-                                )
-                                VALUES (
-                                    2,
-                                    2,
-                                    0,
-                                    '2023-10-02 22-56-17.828',
-                                    NULL,
-                                    NULL,
-                                    NULL,
-                                    NULL,
-                                    NULL,
-                                    NULL,
-                                    NULL,
-                                    NULL,
-                                    NULL,
-                                    'I found some alternate behavior by doing...'
                                 );
 
 
