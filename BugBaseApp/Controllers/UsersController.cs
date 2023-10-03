@@ -163,7 +163,7 @@ namespace BugBaseApp.Controllers
         ///     "displayName": "Jane Doe",
         ///     "email": "jane.doe@corp.com",
         ///     "phone": "444-444-4444",
-        ///     "role": 3
+        ///     "roleId": 3
         /// }
         /// </code>
         /// </pre>
@@ -178,7 +178,7 @@ namespace BugBaseApp.Controllers
         ///     "displayName": "Jane Doe",
         ///     "email": "jane.doe@corp.com",
         ///     "phone": "444-444-4444",
-        ///     "role": 3
+        ///     "roleId": 3
         /// }
         /// </code>
         /// </pre>

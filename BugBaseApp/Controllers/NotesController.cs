@@ -134,6 +134,7 @@ namespace BugBaseApp.Controllers
             {
                 var entity = _context.Add(note);
                 await _context.SaveChangesAsync();
+                _context.Entry(entity).Reload();
                 return await Get(entity.Entity.NoteId);
             }
             return BadRequest(note);
